@@ -8,6 +8,33 @@
 
 #import <Foundation/Foundation.h>
 
+
+/*3. BONUS : Voting System
+ 
+ You are given 3 classes
+ 
+ ElectionManager
+ Conducts an election.
+ Controls start of voting
+ 
+ Election
+ Maintains a list of contenders
+ 
+ Contender
+ Represents details about a contender
+ What is the contender's name?
+ How many votes has he received?
+ 
+ Write a program to simulate an election. Create a class called VotingSimulator. In the main , you are required to do the following:
+ 
+ Create an Election object, and given the Election a name
+ Create a few Contender objects. Add these to the Election object. Make sure that the contender names are distinct!
+ Create a ElectionManager object. Ask it to manage the Election object created above.
+ Ask the ElectionManager to initiatePolling
+ Follow the instructions on the console. After each round of polling you will be asked(within the console) whether you want to continue or not.
+ Ask the ElectionManager to displayResults
+ */
+
 // forward declarations
 @class Contender;
 @class Election;
@@ -17,9 +44,9 @@
 
 - (instancetype)initWithName:(NSString *)name;
     
-- (void)addVote;
-- (NSInteger)votesReceived;
-- (NSString *)name;
+- (void)addVote; //setter
+- (NSInteger)votesReceived; //getter
+- (NSString *)name; //getter
 
 @end
 
@@ -201,10 +228,48 @@
 
 @end
 
+// VotingSimulator class
 
+//@interface VotingSimulator
+//
+//@end
+//
+//@implementation VotingSimulator
+//
+//<#methods#>
+//
+//@end
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        
+        // 1. Create an Election object, and give the Election a name.
+        Election *knittingClubElection2015 = [[Election alloc] initWithElectionName:@"Knitting Club Election 2015"];
+        
+        // 2. Create a few Contender objects. Add these to the Election object. Make sure that the contender names are distinct!
+        Contender *mariah = [[Contender alloc] initWithName:@"Mariah"];
+        [knittingClubElection2015 addContender:mariah];
+        
+        Contender *lauren = [[Contender alloc] initWithName:@"Lauren"];
+        [knittingClubElection2015 addContender:lauren];
+        
+        Contender *anna = [[Contender alloc] initWithName:@"Anna"];
+        [knittingClubElection2015 addContender:anna];
+        
+        [knittingClubElection2015 displayCandidates];
+        
+        // 3. Create a ElectionManager object. Ask it to manage the Election object created above.
+        ElectionManager *knittingClubManager = [[ElectionManager alloc] init];
+        [knittingClubManager manage:knittingClubElection2015];
+        
+        // 4. Ask the ElectionManager to initiatePolling
+        [knittingClubManager initiatePolling];
+        
+        // 5. Follow the instructions on the console. After each round of polling you will be asked(within the console) whether you want to continue or not.
+        
+        // 6. Ask the ElectionManager to displayResults
+        [knittingClubManager displayResults];
+        
         
     }
     return 0;
